@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nabeel Mustafa — QA Tester | Resume Prototype</title>
+  <meta name="description" content="Resume/Portfolio prototype for Nabeel Mustafa — QA Tester (Manual & Automation)">
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --panel: #111318;
+      --muted: #c9d1d9;
+      --text: #e6edf3;
+      --accent: #5eead4; /* teal */
+      --accent-2: #a78bfa; /* violet */
+      --chip: #20232b;
+      --border: #2a2f3a;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    [data-theme="light"] {
+      --bg: #fafafa;
+      --panel: #ffffff;
+      --muted: #4a5568;
+      --text: #111827;
+      --accent: #0ea5e9;
+      --accent-2: #7c3aed;
+      --chip: #f3f4f6;
+      --border: #e5e7eb;
+      --shadow: 0 10px 24px rgba(0,0,0,.08);
+    }
+    body {
+      margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 700px at 10% -10%, rgba(94,234,212,.08), transparent 60%),
+                  radial-gradient(900px 600px at 90% -20%, rgba(167,139,250,.10), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 1120px; margin: 0 auto; padding: 24px; }
+    .topbar { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(180%) blur(10px);
+      background: color-mix(in oklab, var(--bg) 85%, transparent); border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .avatar { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: var(--shadow); }
+    .name { font-weight: 800; letter-spacing: .2px; font-size: clamp(18px, 2.4vw, 22px); }
+    .role { color: var(--muted); font-size: 13px; }
+    .controls { display: flex; align-items: center; gap: 10px; }
+    .btn { border: 1px solid var(--border); background: var(--panel); color: var(--text);
+      padding: 10px 14px; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 14px; transition: .2s transform, .2s background;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0b0c10; border: none; }
+    .grid { display: grid; gap: 22px; grid-template-columns: 1fr; }
+    @media (min-width: 900px) { .grid { grid-template-columns: 1.1fr .9fr; } }
+    .panel { background: color-mix(in oklab, var(--panel) 92%, transparent); border: 1px solid var(--border);
+      border-radius: 20px; padding: 22px; box-shadow: var(--shadow); }
+    h1 { font-size: clamp(28px, 4vw, 36px); margin: 0 0 6px; letter-spacing: .3px; }
+    h2 { font-size: clamp(18px, 2.6vw, 22px); margin: 0 0 10px; letter-spacing: .2px; }
+    h3 { font-size: 16px; margin: 14px 0 6px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: .8px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .badge { background: var(--chip); color: var(--text); border: 1px solid var(--border); padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+    .two-col { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
+    ul.clean { list-style: none; padding: 0; margin: 0; }
+    ul.clean li { padding-left: 0; }
+    .chipline { display: flex; flex-wrap: wrap; gap: 8px; }
+    .kv { display: grid; grid-template-columns: 150px 1fr; gap: 8px; align-items: start; }
+    @media (max-width: 560px) { .kv { grid-template-columns: 1fr; } }
+    .muted { color: var(--muted); }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .card { border: 1px solid var(--border); background: var(--panel); border-radius: 16px; padding: 14px 16px; }
+    .card h4 { margin: 0 0 6px; font-size: 16px; }
+    .card p { margin: 6px 0 8px; }
+    .card .meta { font-size: 12px; color: var(--muted); }
+    .links { display: flex; flex-wrap: wrap; gap: 10px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .list-dots { list-style: disc; padding-left: 18px; }
+    .footer { text-align: center; color: var(--muted); font-size: 12px; padding: 18px 0 32px; }
+
+    /* ATS mode (minimal styles for easy parsing) */
+    body.ats * { box-shadow: none !important; background: transparent !important; }
+    body.ats .panel, body.ats .card, body.ats .btn { border: 1px solid #999 !important; }
+    body.ats .topbar { position: static; backdrop-filter: none; background: transparent; }
+
+    /* Print styles */
+    @media print {
+      :root { --bg: #fff; --text: #111; --muted: #444; --panel: #fff; --border: #aaa; }
+      body { background: #fff; }
+      .topbar, .controls { display: none !important; }
+      a { color: #111; }
+      .container { max-width: 900px; }
+      .panel { box-shadow: none; border: 1px solid #ccc; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="avatar" aria-hidden="true"></div>
+        <div>
+          <div class="name">Nabeel Mustafa</div>
+          <div class="role">QA Tester — Manual & Automation</div>
+        </div>
+      </div>
+      <div class="controls" role="group" aria-label="Display options and actions">
+        <button class="btn" id="themeBtn" type="button" title="Toggle light/dark">Toggle Theme</button>
+        <button class="btn" id="atsBtn" type="button" title="Switch to ATS-friendly view">ATS Mode</button>
+        <button class="btn primary" id="printBtn" type="button" title="Print / Save PDF">Download PDF</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container grid" id="top">
+    <!-- Left / Main -->
+    <section class="panel" aria-labelledby="intro-title">
+      <h1 id="intro-title">Hello — I’m Nabeel.</h1>
+      <p class="muted" style="margin-top:-6px">Jerusalem, Israel · <a href="#contact">Contact</a></p>
+      <p>
+        Motivated and hands-on <strong>QA Tester</strong> with solid knowledge in both <strong>manual</strong> and <strong>automated</strong> testing across web and API platforms. Proficient with
+        <span class="mono">Selenium</span>, <span class="mono">PyTest</span>, <span class="mono">JIRA</span>, <span class="mono">TestRail</span>, <span class="mono">Postman</span>, and working knowledge of <span class="mono">SQL</span> for backend verification. I thrive in Agile teams, love clear test design, and keep refining processes to get reliable, release‑ready software.
+      </p>
+      <div class="badges" aria-label="Highlights">
+        <span class="badge">Manual & Automation</span>
+        <span class="badge">Web & API Testing</span>
+        <span class="badge">Bug Reporting</span>
+        <span class="badge">Agile / Scrum</span>
+        <span class="badge">CI basics</span>
+      </div>
+
+      <h3>Projects (QA-Focused)</h3>
+      <div class="two-col">
+        <div class="card">
+          <h4>Search Feature – Full-Text Validation</h4>
+          <p class="meta">Automation · Python, Selenium, PyTest</p>
+          <ul class="list-dots">
+            <li>Validates relevance, highlighting, and pagination (TC_SEARCH_001—_010).</li>
+            <li>Data-driven with CSV; includes negative tests and debounce checks.</li>
+          </ul>
+          <div class="links">
+            <a href="#" aria-label="Open test repo">Code</a>
+            <a href="#" aria-label="Open test report">Report</a>
+            <a href="#" aria-label="Open test cases">Test Cases</a>
+          </div>
+        </div>
+        <div class="card">
+          <h4>Registration Form — E2E Validation</h4>
+          <p class="meta">Manual + Automation · Selenium, PyTest</p>
+          <ul class="list-dots">
+            <li>Field rules, client/server validation, OTP flow, and accessibility checks.</li>
+            <li>Screenshots on failure; fixtures for reusable setup/teardown.</li>
+          </ul>
+          <div class="links">
+            <a href="#">Code</a>
+            <a href="#">Bug Report</a>
+            <a href="#">STD / STR</a>
+          </div>
+        </div>
+        <div class="card">
+          <h4>“Book Now” Button — Critical Path</h4>
+          <p class="meta">Exploratory + Functional · TestRail, JIRA</p>
+          <ul class="list-dots">
+            <li>Mapped requirement IDs to TC coverage (REQ_QAO_020 ↔ TC_BOOK_001‑008).</li>
+            <li>Found edge cases with slow network & flaky loaders; raised 3 critical bugs.</li>
+          </ul>
+          <div class="links">
+            <a href="#">Cases</a>
+            <a href="#">Bugs</a>
+            <a href="#">Demo</a>
+          </div>
+        </div>
+        <div class="card">
+          <h4>Drag & Drop / File Upload / Headless</h4>
+          <p class="meta">Automation · Selenium, Actions, Headless Chrome</p>
+          <ul class="list-dots">
+            <li>Robust selectors (IDs, CSS, XPath) + retries for dynamic DOMs.</li>
+            <li>Headless screenshot tests for CI and artifact publishing.</li>
+          </ul>
+          <div class="links">
+            <a href="#">Code</a>
+            <a href="#">Artifacts</a>
+          </div>
+        </div>
+      </div>
+
+      <h3>Experience Highlights</h3>
+      <ul class="clean">
+        <li><strong>QA Student / Project Work</strong> — ICS Academy (2024–2025): built test plans (STP), test designs (STD), and reports (STR) for multiple systems including ERP and education portals.</li>
+        <li>Collaborated via JIRA and TestRail; practiced bug life‑cycle, prioritization, and traceability.</li>
+        <li>Comfortable with API tests in Postman, simple SQL queries, and basic Git workflows.</li>
+      </ul>
+    </section>
+
+    <!-- Right / Sidebar -->
+    <aside class="panel" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact</h2>
+      <div class="kv">
+        <div class="muted">Email</div>
+        <div><a href="mailto:nabeelmuu421@gmail.com">nabeelmuu421@gmail.com</a></div>
+        <div class="muted">Phone</div>
+        <div><a href="tel:+972543695488">+972 54‑369‑5488</a></div>
+        <div class="muted">Location</div>
+        <div>Jerusalem, Israel</div>
+        <div class="muted">LinkedIn</div>
+        <div><a href="#" aria-label="LinkedIn profile">linkedin.com/in/your‑handle</a></div>
+        <div class="muted">GitHub</div>
+        <div><a href="#" aria-label="GitHub profile">github.com/your‑handle</a></div>
+        <div class="muted">Portfolio</div>
+        <div><a href="#" aria-label="Portfolio site">your-portfolio.site</a></div>
+      </div>
+
+      <h3>Skills</h3>
+      <div class="chipline" aria-label="Key skills">
+        <span class="badge">Manual Testing</span>
+        <span class="badge">Selenium WebDriver</span>
+        <span class="badge">PyTest</span>
+        <span class="badge">Postman (API)</span>
+        <span class="badge">JIRA</span>
+        <span class="badge">TestRail</span>
+        <span class="badge">SQL (Basics)</span>
+        <span class="badge">Git</span>
+        <span class="badge">Agile / Scrum</span>
+      </div>
+
+      <h3>Education</h3>
+      <div class="card">
+        <h4>ICS Academy — Manual & Automated Testing</h4>
+        <p class="meta">2024–2025 · Course: בודק תוכנה ירושלים J104</p>
+        <p>Hands‑on labs in Selenium + PyTest, JIRA workflows, API testing with Postman, and SQL basics.</p>
+      </div>
+
+      <h3>Languages</h3>
+      <ul class="clean">
+        <li>Arabic (Lebanese) — Native</li>
+        <li>English — Fluent</li>
+        <li>Hebrew — Good</li>
+      </ul>
+
+      <h3>Extras</h3>
+      <ul class="clean">
+        <li>Availability: On‑site or Remote</li>
+        <li>PC + Reliable Internet</li>
+        <li>Flexible hours</li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <div>© <span id="yr"></span> Nabeel Mustafa · Last updated <span id="updated"></span></div>
+  </footer>
+
+  <!-- Structured Data for better SEO/ATS parsing -->
+  <script type="application/ld+json" id="jsonld">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nabeel Mustafa",
+    "jobTitle": "QA Tester",
+    "email": "mailto:nabeelmuu421@gmail.com",
+    "telephone": "+972543695488",
+    "address": {"@type": "PostalAddress", "addressLocality": "Jerusalem", "addressCountry": "IL"},
+    "url": "https://your-portfolio.site",
+    "sameAs": [
+      "https://linkedin.com/in/your-handle",
+      "https://github.com/your-handle"
+    ],
+    "knowsAbout": [
+      "Software Testing", "Selenium WebDriver", "PyTest", "Postman", "JIRA", "TestRail", "SQL", "Agile"
+    ]
+  }
+  </script>
+
+  <script>
+    // Helper: persist theme + ats mode
+    const root = document.documentElement;
+    const body = document.body;
+    const themeBtn = document.getElementById('themeBtn');
+    const atsBtn = document.getElementById('atsBtn');
+    const printBtn = document.getElementById('printBtn');
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    const savedAts = localStorage.getItem('ats') === '1';
+    if (savedTheme === 'light') root.setAttribute('data-theme', 'light');
+    if (savedAts) body.classList.add('ats');
+
+    themeBtn.addEventListener('click', () => {
+      const light = root.getAttribute('data-theme') === 'light';
+      if (light) { root.removeAttribute('data-theme'); localStorage.setItem('theme','dark'); }
+      else { root.setAttribute('data-theme', 'light'); localStorage.setItem('theme','light'); }
+    });
+
+    atsBtn.addEventListener('click', () => {
+      body.classList.toggle('ats');
+      localStorage.setItem('ats', body.classList.contains('ats') ? '1' : '0');
+    });
+
+    printBtn.addEventListener('click', () => { window.print(); });
+
+    // Footer dates
+    const d = new Date();
+    document.getElementById('yr').textContent = d.getFullYear();
+    document.getElementById('updated').textContent = d.toLocaleDateString(undefined, { year:'numeric', month:'long', day:'numeric' });
+  </script>
+</body>
+</html>
+
